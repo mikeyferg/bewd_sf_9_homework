@@ -5,7 +5,7 @@ class RecordLabelsController < ApplicationController
 
   def show
     @label = find_label
-    @artists = Artist.where(:record_label_id => params[:id])
+    @artists = Artist.where(record_label_id: params[:id])
   end
 
 private

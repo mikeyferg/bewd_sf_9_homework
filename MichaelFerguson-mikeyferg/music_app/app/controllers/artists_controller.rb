@@ -12,9 +12,10 @@ class ArtistsController < ApplicationController
   def new
     @artist = Artist.new
   end
+
   def create
     @artist = Artist.create(artist_params)
-    redirect_to artists_path
+    redirect_to direct_to_right_path
   end
 
   def show
@@ -37,13 +38,22 @@ class ArtistsController < ApplicationController
     @artist.destroy
     @songs = Song.where(:artist_id => params[:id])
     @songs.delete_all
-
-
     redirect_to artists_path
   end
+
+
   private
+
+  def direct_to_right_path
+    if params[:artist].has_key?'from_record_label_page'
+      record_label_path(@artist.record_label)
+    else
+      artists_path
+    end
+  end
+
   def artist_params
-    params.require(:artist).permit(:name, :record_label_id)
+    params.require(:artist).permit(:name, :record_label_id, :record_label)
   end
 
   def find_artist

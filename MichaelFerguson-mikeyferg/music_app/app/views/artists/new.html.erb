@@ -2,6 +2,13 @@
 
 <%= simple_form_for @artist do |f| %>
 <ul><%= f.input :name %></ul>
-<%= f.association :record_label, method: :record_label_id, prompt: "Choose a Company" %>
+
+<% if record_label_available? %>
+  <%= f.hidden_field :from_record_label_page, value: true %>
+  <%= f.hidden_field :record_label_id, value: params[:record_label]%>
+<% else %>
+  <%= f.association :record_label, prompt: "Choose a Company" %>
+<%end %>
+
 <ul><%= f.submit %></ul>
 <% end %>

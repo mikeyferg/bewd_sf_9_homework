@@ -18,6 +18,10 @@
         <li><%= link_to "Songs", songs_path %></li>
         <li><%= link_to "Record Labels", record_labels_path %></li>
       </ul>
+      <%= form_tag(artists_path, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
+          <%= text_field_tag :query, params[:query], placeholder: "Search for Artist", class: "form-control" %>
+          <%= submit_tag "Search", class: "btn btn-default" %>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Sign In", "#" %></li>
       </ul>

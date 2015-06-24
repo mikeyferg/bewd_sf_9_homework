@@ -4,4 +4,4 @@
 <p>Artist: <%= artist.name %></p>
 <% end %>
 
-<%= link_to "Add New Artist", new_artist_path %>
+<%= link_to "Add New Artist", new_artist_path(record_label: @record_label) %>
